@@ -30,9 +30,9 @@ function fuckingDoIt(e){
     // envoke refresh page
       $("#firstName, #lastName, #credit, #sendButton").hide();
       $("#button").show();
-      $(".template").empty();
+      // $(".template").empty();
       console.log('dataX: ', data);
-      alert('Thank you, your application to be processed in one hour')
+      propagateDom()
     })
   }else{
   return alert('credit must equal good, bad or terrible!')
@@ -58,6 +58,7 @@ function hideInput() {
 }
 
 function propagateDom(){
+  $('.yessir').remove();
 
   $.get('/getShit')
 
@@ -84,6 +85,7 @@ function propagateDom(){
 
       $row.removeClass('template');
       $row.removeAttr('id');
+      $row.addClass('yessir');
       $row.children('.diagram').html(image[apartmentPic]);
       $row.children('.tenantInfo').text("Tenent: " + firstName + " " + lastName + ", " + "Credit: " + credit)
       $row.children('.price').text("Rent & utilities $"+addPrice+".00")
