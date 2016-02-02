@@ -30,7 +30,6 @@ function fuckingDoIt(e){
     // envoke refresh page
       $("#firstName, #lastName, #credit, #sendButton").hide();
       $("#button").show();
-      // $(".template").empty();
       console.log('dataX: ', data);
       propagateDom()
     })
