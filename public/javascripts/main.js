@@ -15,6 +15,7 @@ var full = false;
 var tenantList;
 
 function deleteRow(){
+
   var _id = $(this).attr('data-info')
   console.log(_id);
   $.post('/removeTenant', {_id: _id})
@@ -81,7 +82,12 @@ function propagateDom(){
     var tenantArray = []
     for(var i = 0; i < data.length; i++){
       var apartmentPic = Math.floor(Math.random() * 2)
-      var addPrice = 450.00 + Math.floor(Math.random() * 100);
+      if (apartmentPic === 0){
+        var addPrice = 1000;
+      }
+      else{
+        var addPrice = 500;
+      }
       var firstName = data[i].name.first
       var lastName = data[i].name.last
       var credit = data[i].credit
