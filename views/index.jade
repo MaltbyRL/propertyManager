@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  button#button Apply now!!
+  input(type="text" id="firstName" placeholder="First Name!")
+  input(type="text" id="lastName" placeholder="Last Name!")
+  input(type="text" id="credit" placeholder="credit? 'good', 'bad' or 'terrible' ")
+  button#sendButton send
+  
+  
+  .container
+    .row.template#first
+      .col-xs-4.diagram(style ="color: black; font-family: times;") Layout
+      .col-xs-4.tenantInfo(style ="color: black; font-family: times;") Tenant Info     
+      .col-xs-4.price(style ="color: black; font-family: times;") Cost
