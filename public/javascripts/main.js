@@ -3,15 +3,25 @@
 $(document).ready(init);
 
 function init() {
-  $('#button').on("click", showInput);
-  $("#sendButton").on('click', fuckingDoIt);
   hideInput()
   propagateDom()
+  $('#button').on("click", showInput);
+  $("#sendButton").on('click', fuckingDoIt);
+  $('.container').on('dblclick', '.yessir', deleteRow)
 }
 
 
 var full = false;
 var tenantList;
+
+function deleteRow(){
+  var _id = $(this).attr('data-info')
+  console.log(_id);
+  $.post('/removeTenant', {_id: _id})
+  .done(function(data){
+    propagateDom()
+  })
+}
 
 function fuckingDoIt(e){
   e.preventDefault
@@ -69,7 +79,6 @@ function propagateDom(){
     var newApartment = $(".container").append($('.row'))
     var apartNum = 0;
     var tenantArray = []
-
     for(var i = 0; i < data.length; i++){
       var apartmentPic = Math.floor(Math.random() * 2)
       var addPrice = 450.00 + Math.floor(Math.random() * 100);
@@ -77,13 +86,15 @@ function propagateDom(){
       var lastName = data[i].name.last
       var credit = data[i].credit
       var tenArr = [firstName, lastName, credit]
-
+      var tenId = data[i]._id
       var $row = $('.template').clone();
       tenantArray.push(tenArr)
+      console.log("TenID", tenId);
 
 
       $row.removeClass('template');
       $row.removeAttr('id');
+      $row.attr('data-info', tenId);
       $row.addClass('yessir');
       $row.children('.diagram').html(image[apartmentPic]);
       $row.children('.tenantInfo').text("Tenent: " + firstName + " " + lastName + ", " + "Credit: " + credit)

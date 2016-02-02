@@ -42,6 +42,15 @@ router.post('/tenant', function(req, res) {
 });
 
 
+router.post('/removeTenant', function(req, res){
+  var _id = req.body._id
+  Tenant.findOneAndRemove({_id: _id}, function(err, tenant){
+    console.log("9999999", tenant);
+    res.send("done")
+  })
+})
+
+
 
 
 router.get('/getShit', function(req, res) {
